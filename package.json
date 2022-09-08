@@ -1,0 +1,61 @@
+{
+  "name": "ngx-contact-list",
+  "version": "1.0.0",
+  "description": "spiritual successor to https://github.com/ericferreira1992/alphabet-filter",
+  "repository": "https://github.com/SkyZeroZx/ngx-contact-list",
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json && node copy",
+    "build:lib": "rimraf dist && npm run packagr && node copy && cd dist && npm pack",
+    "publish-pkg": "pushd dist && npm publish",
+    "build-and-publish": "npm run build:lib && npm run publish-pkg",
+    "packagr": "ng-packagr -p ng-package.json"
+  },
+  "keywords": [
+    "angular",
+    "ngx",
+    "search",
+    "alpha",
+    "alphabet",
+    "filter",
+    "az"
+  ],
+  "author": "Jaime Burgos Tejada <jaimeburgostejada@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@angular-devkit/build-angular": ">=14.0.0",
+    "@angular/common": "^14.0.0",
+    "@angular/compiler": "^14.0.0",
+    "@angular/compiler-cli": ">=14.0.0",
+    "@angular/core": "^14.0.0",
+    "@angular/forms": "^14.0.0",
+    "ng-packagr": "^14.2.1",
+    "cpx2": "^4.2.0",
+    "typescript": "~4.7.2"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0",
+    "@angular/forms": ">=13.0.0",
+    "typescript": "~4.4.2"
+  },
+  "exports": {
+    ".": {
+      "sass": "./src/ngx-contact-list.scss"
+    }
+  },
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+      "ngPackage": "./",
+      "styleIncludePaths": [
+        "./src/ngx-contact-list.scss"
+      ],
+      "entryFile": "src/index.ts"
+    },
+    "dest": "ngx-contact-list"
+  },
+  "dependencies": {
+    
+  }
+}

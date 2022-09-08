@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+ 
+    "styleIncludePaths": [
+      "./src/ngx-contact-list.scss"
+    ],
+    "entryFile": "src/index.ts"
+  },
+  "dest": "ngx-contact-list"
+}
+

@@ -1,0 +1,43 @@
+<div class="example-nav-bar">
+    <div>
+        <span>alpha-filter</span>
+    </div>
+    <ul>
+        <li *ngFor="let number of [1,2]" (click)="selectExample(number)"
+            [ngClass]="{'active': currentNumber === number}">Example 0{{number}}</li>
+    </ul>
+</div>
+
+<div class="example">
+    <section>
+        <h3>{{example.title}}</h3>
+        <h5>{{example.html}}</h5>
+        
+        <ngx-contact-list [noSmoothScroll]="true" [withTemplate]="true" propAlphaOrder="name"  (onClick)="selected($event)"
+            *ngIf="currentNumber === 1" [propsSearch]="['name' , 'lastName']" placeholder="type name or contact"
+            [data]="contacts" height="550px">
+            <ng-template let-item>
+                <div>
+                    <span>{{item.name + ' ' + item.lastName}}</span>
+                </div>
+            </ng-template>
+        </ngx-contact-list>
+
+        <ngx-contact-list *ngIf="currentNumber === 2" [noSmoothScroll]="true" propAlphaOrder="name"
+            [propsSearch]="['name' , 'lastName']" placeholder="type name or contact" [data]="contacts"
+            listClass="search-list" [withTemplate]="true" height="550px">
+            <ng-template let-item>
+                <div class="search-list-item">
+                    <img [src]=" imageExist(item)" alt="">
+                    <span>{{item.name + ' ' + item.lastName}}</span>
+                </div>
+            </ng-template>
+        </ngx-contact-list>
+    </section>
+</div>
+
+<div style="clear: both"></div>
+<div class="footer">
+    See the source code into <br />
+    <a href="https://github.com/skyzerozx/ngx-contact-list" target="_blank">Github</a> repository.
+</div>

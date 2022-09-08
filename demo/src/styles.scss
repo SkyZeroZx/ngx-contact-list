@@ -1,0 +1,19 @@
+ 
+html, body {
+    margin: 0;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    background: #FAFAFA;
+    height: 100%;
+}
+/*Custom Styles for ngx contact list */
+$color-contact-list : rgb(75, 77, 218) ;
+$background-contact-list :#1B2B35;
+$color-text :  WhiteSmoke;
+$color-input-search : WhiteSmoke;
+$border-line-style :  dotted;
+$border-line-color :  WhiteSmoke;
+@import '/node_modules/ngx-contact-list/ngx-contact-list.scss';
+
+ 
+
+ 
