@@ -1,3 +1,0 @@
-export * from './ngx-contact-list.module';
-export * from './ngx-contact-list.component';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsY0FBYywyQkFBMkIsQ0FBQztBQUMxQyxjQUFjLDhCQUE4QixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9uZ3gtY29udGFjdC1saXN0Lm1vZHVsZSc7XG5leHBvcnQgKiBmcm9tICcuL25neC1jb250YWN0LWxpc3QuY29tcG9uZW50JzsiXX0=

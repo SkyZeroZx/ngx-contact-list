@@ -1,6 +1,6 @@
 {
   "name": "ngx-contact-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "spiritual successor to https://github.com/ericferreira1992/alphabet-filter",
   "repository": "https://github.com/SkyZeroZx/ngx-contact-list",
   "scripts": {
@@ -17,7 +17,13 @@
     "alpha",
     "alphabet",
     "filter",
-    "az"
+    "az",
+    "ngx-contact-list",
+    "contact-list angular",
+    "angular 2+",
+    "angular 13+",
+    "angular 14+",
+    "cell phone contact-list"
   ],
   "author": "Jaime Burgos Tejada <jaimeburgostejada@gmail.com>",
   "license": "MIT",
@@ -31,18 +37,13 @@
     "@angular/forms": "^14.0.0",
     "ng-packagr": "^14.2.1",
     "cpx2": "^4.2.0",
-    "typescript": "~4.7.2"
+    "typescript": ">=4.4.4"
   },
   "peerDependencies": {
     "@angular/common": ">=13.0.0",
     "@angular/core": ">=13.0.0",
     "@angular/forms": ">=13.0.0",
-    "typescript": "~4.4.2"
-  },
-  "exports": {
-    ".": {
-      "sass": "./src/ngx-contact-list.scss"
-    }
+    "typescript": ">=4.4.2"
   },
   "ngPackage": {
     "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
