@@ -12,10 +12,12 @@
     <section>
         <h3>{{example.title}}</h3>
         <h5>{{example.html}}</h5>
-        
-        <ngx-contact-list [noSmoothScroll]="true" [withTemplate]="true" propAlphaOrder="name"  (onClick)="selected($event)"
-            *ngIf="currentNumber === 1" [propsSearch]="['name' , 'lastName']" placeholder="type name or contact"
-            [data]="contacts" height="550px">
+
+
+
+        <ngx-contact-list [noSmoothScroll]="true" [withTemplate]="true" propAlphaOrder="name"
+            (onClick)="selected($event)" *ngIf="currentNumber === 1" [propsSearch]="['name' , 'lastName']"
+            placeholder="type name or contact" [data]="contacts" height="550px">
             <ng-template let-item>
                 <div>
                     <span>{{item.name + ' ' + item.lastName}}</span>
@@ -24,15 +26,23 @@
         </ngx-contact-list>
 
         <ngx-contact-list *ngIf="currentNumber === 2" [noSmoothScroll]="true" propAlphaOrder="name"
-            [propsSearch]="['name' , 'lastName']" placeholder="type name or contact" [data]="contacts"
-            listClass="search-list" [withTemplate]="true" height="550px">
+            (onClick)="selected($event)" [propsSearch]="['name' , 'lastName' , 'phone']"
+            placeholder="type name or contact" [data]="contacts" listClass="search-list" [withTemplate]="true"
+            height="550px">
             <ng-template let-item>
                 <div class="search-list-item">
                     <img [src]=" imageExist(item)" alt="">
-                    <span>{{item.name + ' ' + item.lastName}}</span>
+                    <span>{{item.name + ' ' + item.lastName }} <br />
+                        <small class="phone-small">
+                            {{item.phone | slice:0:3}} - {{item.phone | slice:3:6}} - {{item.phone | slice:6:9}}
+                        </small> </span>
                 </div>
             </ng-template>
         </ngx-contact-list>
+
+        <h4>Select
+            <pre>{{dataSelect | json}}</pre>
+        </h4>
     </section>
 </div>
 

@@ -1,7 +1,7 @@
 {
   "name": "ngx-contact-list",
-  "version": "1.0.1",
-  "description": "spiritual successor to https://github.com/ericferreira1992/alphabet-filter",
+  "version": "1.0.2",
+  "description": "Angular component for filtering , contact list in alphabetical listing. Awesome Contact List",
   "repository": "https://github.com/SkyZeroZx/ngx-contact-list",
   "scripts": {
     "build": "ng-packagr -p ng-package.json && node copy",
@@ -56,7 +56,5 @@
     },
     "dest": "ngx-contact-list"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }

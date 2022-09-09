@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxContactListModule } from 'node_modules/ngx-contact-list/';
+import { NgxContactListModule } from 'ngx-contact-list';
 
 
 @NgModule({

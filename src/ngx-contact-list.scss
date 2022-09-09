@@ -1,360 +1,394 @@
 .alpha-search {
-    height: 100%;
-    $color-contact-list: rgb(125, 182, 34) !default;
+  height: 100%;
+  $color-contact-list: rgb(125, 182, 34) !default;
+  position: relative;
+  $background-contact-list: #ffff !default;
+  $color-text: black !default;
+  $border-line-style: solid !default;
+  $border-line-color: #ffff !default;
+  * {
+    outline: 0;
+  }
+
+  .alpha-search-content {
+    height: inherit;
     position: relative;
-    $background-contact-list: #ffff !default;
-    $color-text : black !default;
-    $border-line-style :  solid !default;
-    $border-line-color : #ffff !default;
-    * {
-        outline: 0;
+
+    .close-button {
+      cursor: pointer;
+      position: absolute;
+      z-index: 9999;
+      right: 35px;
+      top: 17px;
+      padding: 9px 10px;
+      background: #fff;
+      transition-duration: 0.3s;
+
+      border: none;
+      border-radius: 25px;
+
+      > svg {
+        fill: #bbb;
+        stroke: #bbb;
+        stroke-width: 0;
+        width: 16px;
+      }
+
+      &:hover {
+        background: $background-contact-list;
+      }
     }
 
-    .alpha-search-content {
-        height: inherit;
+    .alpha-search-input {
+      background: $background-contact-list;
+      padding: 15px;
+      border: 1px rgba(#ccc, 0.6) solid;
+      border-radius: 10px 10px 0 0;
+
+      > form > input {
+        width: 100%;
+        max-width: inherit;
+        border: none;
+        outline: 0;
+        box-sizing: border-box;
+        font-size: 18px;
+        padding: 12px 45px 12px 50px;
+        background-color: transparent;
+      }
+
+      .icon {
+        position: absolute;
+
+        > svg {
+          stroke-width: 0;
+        }
+
+        &:first-child {
+          margin-top: 6px;
+
+          > svg {
+            fill: $color-contact-list;
+            stroke: $color-contact-list;
+            width: 32px;
+          }
+        }
+
+        &:last-child {
+          cursor: pointer;
+          left: 485px;
+          top: 28px;
+
+          > svg {
+            fill: #bbb;
+            stroke: #bbb;
+            width: 17px;
+          }
+        }
+      }
+    }
+
+    .alpha-search-area {
+      height: calc(100% - 77px);
+      position: relative;
+      box-sizing: border-box;
+      background: $background-contact-list;
+      border-radius: 0 0 10px 10px;
+
+      > ul {
+        height: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 15px 0 15px 0;
+        display: block;
+        box-sizing: border-box;
+        max-height: inherit;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border-radius: 0 0 10px 10px;
+        border: 1px rgba(204, 204, 204, 0.6) solid;
+        border-top: 0;
+
+        > li {
+          padding: 0 20px;
+          position: relative;
+          display: table;
+          width: 100%;
+          box-sizing: border-box;
+          transition-duration: 0.5s;
+
+          > span {
+            position: relative;
+            z-index: 2;
+            padding: 0 15px;
+            font-weight: bold;
+            font-size: 25px;
+            border-bottom: 1px $color-contact-list solid;
+            margin-bottom: -1px;
+            display: table;
+            color: $color-contact-list;
+          }
+
+          .search-item-data {
+            cursor: pointer;
+            z-index: 1;
+            color: $color-text;
+            position: relative;
+            display: table;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 -20px;
+            transition-duration: 0.3s;
+            border-top: 1px $border-line-color $border-line-style;
+            background: $background-contact-list;
+
+            > span {
+              display: block;
+              color: $color-text;
+              padding: 10px 0;
+            }
+          }
+
+          &:hover {
+            .search-item-data {
+              background: rgba(0, 0, 0, 0.03);
+            }
+          }
+        }
+
+        @each $item
+          in (
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+          )
+        {
+          .let-#{$item} ~ .let-#{$item} {
+            > span {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    > section {
+      z-index: 1;
+      position: absolute;
+      right: 1px;
+      top: 77px;
+      bottom: 1px;
+      overflow: hidden;
+      background: linear-gradient(
+        to left,
+        $background-contact-list 30px,
+        transparent 50px
+      );
+      border-radius: 0 0 10px 0;
+
+      .alpha-letters-list {
         position: relative;
 
-        .close-button {
-            cursor: pointer;
-            position: absolute;
-            z-index: 9999;
-            right: 35px;
-            top: 17px;
-            padding: 9px 10px;
-            background: #fff;
-            transition-duration: 0.3s;
+        text-transform: uppercase;
+        transition-duration: 0.3s;
+        display: table;
+        width: 50px;
+        padding: 1px 0;
+        text-align: center;
+        font-size: 13px;
+        font-weight: bold;
+        box-sizing: border-box;
+        pointer-events: none;
+        opacity: 0.8;
 
-            border: none;
-            border-radius: 25px;
+        > span {
+          position: relative;
+          color: $color-contact-list;
 
-            > svg {
-                fill: #bbb;
-                stroke: #bbb;
-                stroke-width: 0;
-                width: 16px;
-            }
-
-            &:hover {
-                background: $background-contact-list;
-            }
+          z-index: 2;
+          display: block;
+          width: 100%;
         }
 
-        .alpha-search-input {
-            background: $background-contact-list;
-            padding: 15px;
-            border: 1px rgba(#ccc, 0.6) solid;
-            border-radius: 10px 10px 0 0;
-
-            > form > input {
-                width: 100%;
-                max-width: inherit;
-                border: none;
-                outline: 0;
-                box-sizing: border-box;
-                font-size: 18px;
-                padding: 12px 45px 12px 50px;
-                background-color: transparent;
-            }
-
-            .icon {
-                position: absolute;
-
-                > svg {
-                    stroke-width: 0;
-                }
-
-                &:first-child {
-                    margin-top: 6px;
-
-                    > svg {
-                        fill: $color-contact-list;
-                        stroke: $color-contact-list;
-                        width: 32px;
-                    }
-                }
-
-                &:last-child {
-                    cursor: pointer;
-                    left: 485px;
-                    top: 28px;
-
-                    > svg {
-                        fill: #bbb;
-                        stroke: #bbb;
-                        width: 17px;
-                    }
-                }
-            }
+        > i {
+          display: block;
+          z-index: 1;
+          position: absolute;
+          left: 5px;
+          top: calc(50% - 20px);
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          transition: 0.2s;
+          opacity: 0;
+          background: rgba(0, 0, 0, 0.1);
         }
 
-        .alpha-search-area {
-            height: calc(100% - 77px);
-            position: relative;
-            box-sizing: border-box;
-            background: $background-contact-list;
-            border-radius: 0 0 10px 10px;
+        &.contains {
+          opacity: 1;
+          cursor: pointer;
+          pointer-events: all;
+          color: $background-contact-list;
 
-            > ul {
-                height: 100%;
-                list-style: none;
-                margin: 0;
-                padding: 15px 0 15px 0;
-                display: block;
-                box-sizing: border-box;
-                max-height: inherit;
-                overflow-y: auto;
-                overflow-x: hidden;
-                border-radius: 0 0 10px 10px;
-                border: 1px rgba(204, 204, 204, 0.6) solid;
-                border-top: 0;
-
-                > li {
-                    padding: 0 20px;
-                    position: relative;
-                    display: table;
-                    width: 100%;
-                    box-sizing: border-box;
-                    transition-duration: 0.5s;
-
-                    > span {
-                        position: relative;
-                        z-index: 2;
-                        padding: 0 15px;
-                        font-weight: bold;
-                        font-size: 25px;
-                        border-bottom: 1px $color-contact-list solid;
-                        margin-bottom: -1px;
-                        display: table;
-                        color: $color-contact-list;
-                    }
-
-                    .search-item-data {
-                        cursor: pointer;
-                        z-index: 1;
-                        color : $color-text;
-                        position: relative;
-                        display: table;
-                        width: 100%;
-                        padding: 0 20px;
-                        margin: 0 -20px;
-                        transition-duration: 0.3s;
-                        border-top: 1px $border-line-color $border-line-style;
-                        background: $background-contact-list;
-
-                        > span {
-                            display: block;
-                            color : $color-text;
-                            padding: 10px 0;
-                        }
-                    }
-
-                    &:hover {
-                        .search-item-data {
-                            background: rgba(0, 0, 0, 0.03);
-                        }
-                    }
-                }
-               
-                @each $item in ('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z') {
-                    .let-#{$item} ~ .let-#{$item} {
-                        > span {
-                            display: none;
-                        }
-                    }
-                }
-            }
+          > span:hover ~ i {
+            opacity: 0.8;
+          }
         }
 
-        > section {
-            z-index: 1;
-            position: absolute;
-            right: 1px;
-            top: 77px;
-            bottom: 1px;
-            overflow: hidden;
-            background: linear-gradient(to left, $background-contact-list 30px, transparent 50px);
-            border-radius: 0 0 10px 0;
-
-            .alpha-letters-list {
-                position: relative;
-                
-                text-transform: uppercase;
-                transition-duration: 0.3s;
-                display: table;
-                width: 50px;
-                padding: 1px 0;
-                text-align: center;
-                font-size: 13px;
-                font-weight: bold;
-                box-sizing: border-box;
-                pointer-events: none;
-                opacity: 0.8;
-
-                > span {
-                    position: relative;
-                   color :  $color-contact-list;
-
-                    z-index: 2;
-                    display: block;
-                    width: 100%;
-                }
-
-                > i {
-                    display: block;
-                    z-index: 1;
-                    position: absolute;
-                    left: 5px;
-                    top: calc(50% - 20px);
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    transition: 0.2s;
-                    opacity: 0;
-                    background: rgba(0, 0, 0, 0.1);
-                }
-
-                &.contains {
-                    opacity: 1;
-                    cursor: pointer;
-                    pointer-events: all;
-                    color: $background-contact-list;
-
-                    > span:hover ~ i {
-                        opacity: 0.8;
-                    }
-                }
-
-                &.actived {
-                    opacity: 1;
-                    z-index: 10;
-                    position: relative;
-                    color: $background-contact-list;
-                    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
-                    visibility: hidden;
-                }
-            }
+        &.actived {
+          opacity: 1;
+          z-index: 10;
+          position: relative;
+          color: $background-contact-list;
+          text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+          visibility: hidden;
         }
+      }
+    }
 
-        .alpha-indicator {
-            z-index: 2;
-            position: absolute;
-            right: 0;
-            top: 0px;
-            margin-top: -50px;
+    .alpha-indicator {
+      z-index: 2;
+      position: absolute;
+      right: 0;
+      top: 0px;
+      margin-top: -50px;
+      display: table;
+      transition-duration: 0.5s;
+      user-select: none;
+
+      > div {
+        display: table-cell;
+        vertical-align: middle;
+
+        &:nth-child(1) {
+          font-size: 25px;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding-right: 5px;
+
+          > div {
             display: table;
-            transition-duration: 0.5s;
-            user-select: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: $color-contact-list;
+            color: $background-contact-list;
 
-            > div {
-                display: table-cell;
-                vertical-align: middle;
-
-                &:nth-child(1) {
-                    font-size: 25px;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    padding-right: 5px;
-
-                    > div {
-                        display: table;
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        background: $color-contact-list;
-                        color: $background-contact-list;
-
-                        > span {
-                            display: table-cell;
-                            color : $color-text;
-                            vertical-align: middle;
-                            text-align: center;
-                        }
-                    }
-                }
-
-                &:nth-child(2) {
-                    > span {
-                        z-index: 1;
-                        display: block;
-                        position: absolute;
-                        left: 68px;
-                        top: 50px;
-                        font-weight: bold;
-                        color: $background-contact-list;
-                        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-                    }
-
-                    > svg {
-                        width: 55px;
-                        opacity: 0.5;
-                        fill: rgba($color-contact-list, 0.5);
-                    }
-                }
+            > span {
+              display: table-cell;
+              color: $color-text;
+              vertical-align: middle;
+              text-align: center;
             }
+          }
         }
 
-        &.hidden-title {
-            .alpha-search-title {
-                height: 0;
-            }
+        &:nth-child(2) {
+          > span {
+            z-index: 1;
+            display: block;
+            position: absolute;
+            left: 68px;
+            top: 50px;
+            font-weight: bold;
+            color: $color-text;
+
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+          }
+
+          > svg {
+            width: 55px;
+            opacity: 0.5;
+            fill: rgba($color-contact-list, 0.5);
+          }
         }
+      }
     }
 
-    .fadeEnter {
-        -webkit-animation-duration: 0.5s;
-        animation-duration: 0.5s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
+    &.hidden-title {
+      .alpha-search-title {
+        height: 0;
+      }
+    }
+  }
 
-        -webkit-animation-name: fadeEnter;
-        animation-name: fadeEnter;
-    }
+  .fadeEnter {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 
-    .fadeExit {
-        -webkit-animation-duration: 0.5s;
-        animation-duration: 0.5s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
+    -webkit-animation-name: fadeEnter;
+    animation-name: fadeEnter;
+  }
 
-        -webkit-animation-name: fadeExit;
-        animation-name: fadeExit;
-    }
+  .fadeExit {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 
-    @-webkit-keyframes fadeEnter {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-    @keyframes fadeEnter {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
+    -webkit-animation-name: fadeExit;
+    animation-name: fadeExit;
+  }
 
-    @-webkit-keyframes fadeExit {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
+  @-webkit-keyframes fadeEnter {
+    from {
+      opacity: 0;
     }
-    @keyframes fadeExit {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
+    to {
+      opacity: 1;
     }
+  }
+  @keyframes fadeEnter {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeExit {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeExit {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 }
 .input-search-contact-list {
-    $color-input-search : black !default;
-    color : $color-input-search;
+  $color-input-search: black !default;
+  color: $color-input-search;
 }

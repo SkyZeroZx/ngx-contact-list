@@ -6,6 +6,8 @@ Compatible with previous versions of Angular, except AngularJS.
 
 Spiritual successor of alphabet-filter [repository](https://github.com/ericferreira1992/alphabet-filter).
 
+Support use in mobile device, listening event touch start & touch move
+
 # Demo
 
 See a [live demo](https://skyzerozx.github.io/ngx-contact-list).
@@ -36,10 +38,9 @@ See a [live demo](https://skyzerozx.github.io/ngx-contact-list).
 
 ```html
 <ngx-contact-list
-  *ngIf="currentNumber === 2"
   [noSmoothScroll]="true"
   propAlphaOrder="name"
-  [propsSearch]="['name' , 'lastName']"
+  [propsSearch]="['name' , 'lastName' , 'phone']"
   placeholder="type name or contact"
   [data]="contacts"
   listClass="search-list"
@@ -48,8 +49,14 @@ See a [live demo](https://skyzerozx.github.io/ngx-contact-list).
 >
   <ng-template let-item>
     <div class="search-list-item">
-      <img [src]="imageExist(item)" alt="" />
-      <span>{{item.name + ' ' + item.lastName}}</span>
+      <img [src]=" imageExist(item)" alt="" />
+      <span
+        >{{item.name + ' ' + item.lastName }} <br />
+        <small class="phone-small">
+          {{item.phone | slice:0:3}} - {{item.phone | slice:3:6}} - {{item.phone
+          | slice:6:9}}
+        </small>
+      </span>
     </div>
   </ng-template>
 </ngx-contact-list>

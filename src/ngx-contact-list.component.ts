@@ -20,7 +20,7 @@ import { FilterPipe } from './filter.pipe';
   selector: 'ngx-contact-list',
   templateUrl: './ngx-contact-list.component.html',
   host: {
-    '(document:mousewheel)': 'onMouseWheelContent($event)',
+    '(document:wheel)': 'onMouseWheelContent($event)',
     '(document:keydown)': 'onKeyDownContent($event)',
   },
 })
@@ -38,7 +38,7 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() propAlphaOrder = '';
   @Input() propsSearch: any = [];
   @Input() data: any[] = [];
-  @Input() placeholder = 'digite sua busca';
+  @Input() placeholder = 'type name or contact';
   @Input() listClass: string = null;
   @Input() withTemplate = false;
   @Input() noSmoothScroll = false;
@@ -104,10 +104,29 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
         'mousedown',
         this.onMouseDownIndicator.bind(this)
       );
+
       this.renderer.listen(
         this.indicatorEl.nativeElement,
         'mouseup',
         this.onMouseUpIndicator.bind(this)
+      );
+
+      this.renderer.listen(
+        this.indicatorEl.nativeElement,
+        'touchmove',
+        this.onTouchMoveEvent.bind(this)
+      );
+
+      this.renderer.listen(
+        this.indicatorEl.nativeElement,
+        'touchstart',
+        this.onTouchStartEvent.bind(this)
+      );
+
+      this.renderer.listen(
+        this.indicatorEl.nativeElement,
+        'touchend',
+        this.onTouchEndEvent.bind(this)
       );
 
       this.heightContent =
@@ -321,6 +340,38 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
 
       return 0;
     });
+  }
+
+  onTouchMoveEvent(event) {
+    event.preventDefault();
+    if (!this.form.get('search').value && this.indicatorClicked) {
+      for (const letter of this.letterList.nativeElement.children as any) {
+        if (letter.classList.contains('contains')) {
+          const position = letter.getBoundingClientRect();
+          const bounds = {
+            top: position.y,
+            bottom: position.y + letter.clientHeight,
+          };
+
+          if (
+            event.changedTouches[0].clientY >= bounds.top &&
+            event.changedTouches[0].clientY <= bounds.bottom
+          ) {
+            if (this.currentAlpha !== letter.children[0].innerHTML)
+              this.goLetter(letter.children[0].innerHTML);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  onTouchStartEvent(event) {
+    this.indicatorClicked = true;
+  }
+
+  onTouchEndEvent(event) {
+    this.indicatorClicked = false;
   }
 
   ngOnDestroy(): void {}
