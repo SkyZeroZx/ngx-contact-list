@@ -134,8 +134,6 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
 
       this.lettersListHeight =
         this.letterList.nativeElement.children[0].clientHeight;
-
-      this.focusInput();
     }, 100);
   }
 
@@ -191,7 +189,9 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
           const liPosition = liElement.getBoundingClientRect();
           const liTop = liPosition.top - 20;
 
-          if (liTop < ulTop) current = liElement;
+          if (liTop < ulTop) {
+            current = liElement;
+          }
         }
       }
 
@@ -233,7 +233,6 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
         behavior: 'smooth',
       });
 
-      this.goingToLetter = true;
       const checkIfScrollToIsFinished = setInterval(() => {
         if (scrollTop === this.searchListEl.nativeElement.scrollTop) {
           clearInterval(checkIfScrollToIsFinished);
@@ -242,8 +241,9 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
       }, 60);
     }
   }
+
   onMouseMoveContent(event) {
-    if (!this.form.get('search').value && this.indicatorClicked) {
+    if (this.indicatorClicked) {
       for (const letter of this.letterList.nativeElement.children as any) {
         if (letter.classList.contains('contains')) {
           const position = letter.getBoundingClientRect();
@@ -276,7 +276,9 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
 
   onScrollList(e) {
     if (!this.goingToLetter) {
-      if (!this.indicatorClicked) this.defineCurrentLetterElement();
+      if (!this.indicatorClicked) {
+        this.defineCurrentLetterElement();
+      }
     }
   }
 
@@ -296,8 +298,28 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
     if (this.onCancel.observers.length > 0) this.onCancel.emit();
   }
 
-  focusInput() {
-    this.inputSearchEl.nativeElement.focus();
+  sendTouchEvent(x, y, element, eventType) {
+    const touchObj = new Touch({
+      identifier: Date.now(),
+      target: element,
+      clientX: x,
+      clientY: y,
+      radiusX: 2.5,
+      radiusY: 2.5,
+      rotationAngle: 10,
+      force: 0.5,
+    });
+
+    const touchEvent = new TouchEvent(eventType, {
+      cancelable: true,
+      bubbles: true,
+      touches: [touchObj],
+      targetTouches: [],
+      changedTouches: [touchObj],
+      shiftKey: true,
+    });
+
+    element.dispatchEvent(touchEvent);
   }
 
   startsWithLetter(_letter: string) {
@@ -344,23 +366,21 @@ export class NgxContactListComponent implements OnInit, OnChanges, OnDestroy {
 
   onTouchMoveEvent(event) {
     event.preventDefault();
-    if (!this.form.get('search').value && this.indicatorClicked) {
-      for (const letter of this.letterList.nativeElement.children as any) {
-        if (letter.classList.contains('contains')) {
-          const position = letter.getBoundingClientRect();
-          const bounds = {
-            top: position.y,
-            bottom: position.y + letter.clientHeight,
-          };
+    for (const letter of this.letterList.nativeElement.children as any) {
+      if (letter.classList.contains('contains')) {
+        const position = letter.getBoundingClientRect();
+        const bounds = {
+          top: position.y,
+          bottom: position.y + letter.clientHeight,
+        };
 
-          if (
-            event.changedTouches[0].clientY >= bounds.top &&
-            event.changedTouches[0].clientY <= bounds.bottom
-          ) {
-            if (this.currentAlpha !== letter.children[0].innerHTML)
-              this.goLetter(letter.children[0].innerHTML);
-            break;
-          }
+        if (
+          event.changedTouches[0].clientY >= bounds.top &&
+          event.changedTouches[0].clientY <= bounds.bottom
+        ) {
+          if (this.currentAlpha !== letter.children[0].innerHTML)
+            this.goLetter(letter.children[0].innerHTML);
+          break;
         }
       }
     }

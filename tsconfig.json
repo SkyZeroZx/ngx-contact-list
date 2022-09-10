@@ -2,6 +2,7 @@
 	"compileOnSave": false,
 	"compilerOptions": {
 		"baseUrl": "./",
+		"noImplicitReturns": false,
 		"downlevelIteration": true,
 		"module": "es2020",
 		"outDir": "./ngx-contact-list/out-tsc",

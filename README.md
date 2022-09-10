@@ -134,3 +134,12 @@ $border-line-style :  solid;
 | `height`       | `string`            | Height to be used throughout the component. (ex .: ` <... height="100%"></...>`).               |
 | `withTemplate` | `boolean`           | Used when to need of customize using ng-template. (ex .: ` <... [withTemplate]="true"></...>`). |
 | `onCancel`     | `EventEmitter<any>` | Used to enable "close" button.(ex .: ` <... (onCancel)="cancel()"></...>`).                     |
+
+# Versions
+
+| Ngx-Contact-List | Angular               
+| ---------------- | --------------------- |
+|  01.0.3          |  >=14.0.0             |
+|  0.9             |  >=13.0.0  < 14.0.0   | 
+|  0.8             |  >=12.0.0  < 13.0.0   |
+|  0.7             |  >=11.0.0  < 12.0.0   |

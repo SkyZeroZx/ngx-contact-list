@@ -1,6 +1,6 @@
 {
   "name": "ngx-contact-list",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Angular component for filtering , contact list in alphabetical listing. Awesome Contact List",
   "repository": "https://github.com/SkyZeroZx/ngx-contact-list",
   "scripts": {
@@ -21,6 +21,9 @@
     "ngx-contact-list",
     "contact-list angular",
     "angular 2+",
+    "angular 10+",
+    "angular 11+",
+    "angular 12+",
     "angular 13+",
     "angular 14+",
     "cell phone contact-list"
